@@ -19,20 +19,15 @@ import {
 } from 'react-native';
 
 import Header from './components/Header';
-
-declare const global: {HermesInternal: null | {}};
+import SelectionLists from './components/SectionLists';
 
 const App = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      <Header />
-      <SafeAreaView style={styles.safeAreaView}>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Text style={{padding: 10}}>hoge</Text>
-          </ScrollView>
+      <SafeAreaView>
+        <Header />
+        <SelectionLists />
       </SafeAreaView>
     </>
   );
@@ -44,7 +39,8 @@ const styles = StyleSheet.create({
   },
   safeAreaView: {
     backgroundColor: '#fff',
-  }
+    height: 500,
+  },
 });
 
 export default App;

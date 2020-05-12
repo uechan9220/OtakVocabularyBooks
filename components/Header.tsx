@@ -3,12 +3,11 @@ import {View, Text, StyleSheet} from 'react-native';
 
 const Header: React.FC = () => {
   return (
-    <View style={{height: 100}}>
+    <View style={{height: 64}}>
       <View style={styles.header}>
         <Text
           style={{
             color: '#fff',
-            marginTop: 40,
             fontWeight: 'bold',
             fontSize: 20,
           }}>
