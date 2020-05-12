@@ -13,3 +13,5 @@ const SectionLists: React.FC = () => {
     </View>
   );
 };
+
+export default SectionLists;
