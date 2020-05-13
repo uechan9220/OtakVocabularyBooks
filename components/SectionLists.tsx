@@ -1,9 +1,11 @@
 import * as React from 'react';
-import {SectionList, StyleSheet, Text, View} from 'react-native';
+import {SectionList, StyleSheet, Text, View, Alert} from 'react-native';
 
-interface SectionListsProps {}
+interface SectionListsProps {
+  hoge: any
+}
 
-const SectionLists: React.FC<SectionListsProps> = () => {
+const SectionLists: React.FC<SectionListsProps> = ({navigation}: any) => {
   const datas = [
     {title: 'D', data: ['Devian', 'Dan', 'Dominic']},
     {
@@ -36,9 +38,15 @@ const SectionLists: React.FC<SectionListsProps> = () => {
     },
   ];
 
+  const navigateToDetails = (item: string) => {
+    navigation.navigate('Details');
+  };
+
   const Item = ({title}: {title: string}) => (
     <View>
-      <Text style={styles.item}>{title}</Text>
+      <Text onPress={() => navigateToDetails(title)} style={styles.item}>
+        {title}
+      </Text>
     </View>
   );
 
@@ -46,7 +54,7 @@ const SectionLists: React.FC<SectionListsProps> = () => {
     <View style={styles.container}>
       <SectionList
         sections={datas}
-        renderItem={({item, index}) => <Item title={item} />}
+        renderItem={({item, index}) => <Item title={item} key={index} />}
         renderSectionHeader={({section: {title}}) => (
           <Text style={styles.header}>{title}</Text>
         )}
