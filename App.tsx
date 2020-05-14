@@ -28,33 +28,47 @@ const Stack = createStackNavigator();
 
 const App: React.FC = () => {
   const datas = [
-    {title: 'D', data: ['Devian', 'Dan', 'Dominic']},
+    {
+      title: 'D',
+      data: [
+        {name: 'Devian', details: 'hogehoge'},
+        {name: 'Dan', details: 'fugafuga'},
+        {name: 'Dominic', details: 'pokepoke'},
+      ],
+    },
     {
       title: 'J',
       data: [
-        'Jackson',
-        'James',
-        'Jillian',
-        'James',
-        'Jillian',
-        'James',
-        'Jillian',
-        'James',
-        'Jillian',
-        'James',
-        'Jillian',
-        'James',
-        'Jillian',
-        'James',
-        'Jillian',
-        'James',
-        'Jillian',
-        'James',
-        'Jillian',
-        'James',
-        'Jillian',
-        'James',
-        'Jillian',
+        {name: 'Jackson'},
+        {name: 'James'},
+        {name: 'Jillian'},
+        {name: 'James'},
+        {name: 'Jillian'},
+        {name: 'James'},
+        {name: 'Jillian'},
+        {name: 'James'},
+        {name: 'Jillian'},
+        {name: 'James'},
+        {name: 'Jackson'},
+        {name: 'James'},
+        {name: 'Jillian'},
+        {name: 'James'},
+        {name: 'Jillian'},
+        {name: 'James'},
+        {name: 'Jillian'},
+        {name: 'James'},
+        {name: 'Jillian'},
+        {name: 'James'},
+        {name: 'Jackson'},
+        {name: 'James'},
+        {name: 'Jillian'},
+        {name: 'James'},
+        {name: 'Jillian'},
+        {name: 'James'},
+        {name: 'Jillian'},
+        {name: 'James'},
+        {name: 'Jillian'},
+        {name: 'James'},
       ],
     },
   ];
@@ -70,9 +84,13 @@ const App: React.FC = () => {
               renderItem={({item, index}) => (
                 <View>
                   <Text
-                    onPress={() => navigation.navigate('Details', index)}
+                    onPress={() =>
+                      navigation.navigate('詳細', {
+                        item,
+                      })
+                    }
                     style={styles.item}>
-                    {item}
+                    {item.name}
                   </Text>
                 </View>
               )}
@@ -86,19 +104,20 @@ const App: React.FC = () => {
     );
   }
 
-  const DetailsScreen = ({ navigation }: any) => {
-    Alert.alert(navigation.state)
+  const DetailsScreen = ({route, navigation}: any) => {
+    const {item} = route.params;
     return (
       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-        <Text>{navigation.title}</Text>
+        <Text>{item.details}</Text>
       </View>
     );
   };
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="オタク用語辞典" component={HomeScreen} />
-        <Stack.Screen name="Details" component={DetailsScreen} />
+        <Stack.Screen name="詳細" component={DetailsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
