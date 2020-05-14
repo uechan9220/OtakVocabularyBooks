@@ -23,23 +23,11 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import SectionLists from './components/SectionLists';
-
 import HomeScreen from './screens/HomeScreen';
 
 const Stack = createStackNavigator();
 
 const App: React.FC = () => {
-  function HomeScreen({navigation}: any) {
-    return (
-      <>
-        <StatusBar barStyle="dark-content" />
-        <SafeAreaView>
-          <SectionLists />
-        </SafeAreaView>
-      </>
-    );
-  }
-
   const DetailsScreen = ({route, navigation}: any) => {
     const {item} = route.params;
     return (
@@ -53,10 +41,15 @@ const App: React.FC = () => {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
-          name="オタク用語辞典"
+          name="Home"
           component={HomeScreen}
+          options={{title: 'オタク用語辞典'}}
         />
-        <Stack.Screen name="詳細" component={DetailsScreen} />
+        <Stack.Screen
+          name="Detail"
+          component={DetailsScreen}
+          options={{title: '詳細'}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

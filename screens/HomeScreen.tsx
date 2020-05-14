@@ -4,7 +4,6 @@ import {
   StatusBar,
 } from 'react-native';
 
-import Header from '../components/Header';
 import SelectionLists from '../components/SectionLists';
 
 

@@ -72,7 +72,7 @@ const SectionLists: React.FC = () => {
           <View>
             <Text
               onPress={() =>
-                navigation.navigate('詳細', {
+                navigation.navigate('Detail', {
                   item,
                 })
               }
