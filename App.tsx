@@ -22,21 +22,12 @@ import {
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import SectionLists from './components/SectionLists';
 import HomeScreen from './screens/HomeScreen';
+import DetailsScreen from './screens/DetailsScreen';
 
 const Stack = createStackNavigator();
 
 const App: React.FC = () => {
-  const DetailsScreen = ({route, navigation}: any) => {
-    const {item} = route.params;
-    return (
-      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-        <Text>{item.details}</Text>
-      </View>
-    );
-  };
-
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
