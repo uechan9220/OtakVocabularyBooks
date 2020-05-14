@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { SectionList, StyleSheet, Text, View, Alert } from 'react-native';
+import {SectionList, StyleSheet, Text, View, Alert} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-
 
 const SectionLists: React.FC = () => {
   const navigation = useNavigation();
@@ -68,7 +67,8 @@ const SectionLists: React.FC = () => {
     <View style={styles.container}>
       <SectionList
         sections={datas}
-        renderItem={({item, index}) => (
+        keyExtractor={(item, index) => `${item}+ ${index}`}
+        renderItem={({item}) => (
           <View>
             <Text
               onPress={() =>
