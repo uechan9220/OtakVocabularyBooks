@@ -13,7 +13,7 @@ const HomeScreen: React.FC = (props) => {
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
-        <SelectionLists hoge={props}/>
+        <SelectionLists />
       </SafeAreaView>
     </>
   );

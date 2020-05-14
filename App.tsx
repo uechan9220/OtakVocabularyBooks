@@ -22,83 +22,19 @@ import {
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
+import SectionLists from './components/SectionLists';
+
 import HomeScreen from './screens/HomeScreen';
 
 const Stack = createStackNavigator();
 
 const App: React.FC = () => {
-  const datas = [
-    {
-      title: 'D',
-      data: [
-        {name: 'Devian', details: 'hogehoge'},
-        {name: 'Dan', details: 'fugafuga'},
-        {name: 'Dominic', details: 'pokepoke'},
-      ],
-    },
-    {
-      title: 'J',
-      data: [
-        {name: 'Jackson'},
-        {name: 'James'},
-        {name: 'Jillian'},
-        {name: 'James'},
-        {name: 'Jillian'},
-        {name: 'James'},
-        {name: 'Jillian'},
-        {name: 'James'},
-        {name: 'Jillian'},
-        {name: 'James'},
-        {name: 'Jackson'},
-        {name: 'James'},
-        {name: 'Jillian'},
-        {name: 'James'},
-        {name: 'Jillian'},
-        {name: 'James'},
-        {name: 'Jillian'},
-        {name: 'James'},
-        {name: 'Jillian'},
-        {name: 'James'},
-        {name: 'Jackson'},
-        {name: 'James'},
-        {name: 'Jillian'},
-        {name: 'James'},
-        {name: 'Jillian'},
-        {name: 'James'},
-        {name: 'Jillian'},
-        {name: 'James'},
-        {name: 'Jillian'},
-        {name: 'James'},
-      ],
-    },
-  ];
-
   function HomeScreen({navigation}: any) {
     return (
       <>
         <StatusBar barStyle="dark-content" />
         <SafeAreaView>
-          <View style={styles.container}>
-            <SectionList
-              sections={datas}
-              renderItem={({item, index}) => (
-                <View>
-                  <Text
-                    onPress={() =>
-                      navigation.navigate('詳細', {
-                        item,
-                      })
-                    }
-                    style={styles.item}>
-                    {item.name}
-                  </Text>
-                </View>
-              )}
-              renderSectionHeader={({section: {title}}) => (
-                <Text style={styles.header}>{title}</Text>
-              )}
-            />
-          </View>
+          <SectionLists />
         </SafeAreaView>
       </>
     );
@@ -116,7 +52,10 @@ const App: React.FC = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="オタク用語辞典" component={HomeScreen} />
+        <Stack.Screen
+          name="オタク用語辞典"
+          component={HomeScreen}
+        />
         <Stack.Screen name="詳細" component={DetailsScreen} />
       </Stack.Navigator>
     </NavigationContainer>

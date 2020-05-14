@@ -1,39 +1,53 @@
 import * as React from 'react';
-import {SectionList, StyleSheet, Text, View, Alert} from 'react-native';
+import { SectionList, StyleSheet, Text, View, Alert } from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
-interface SectionListsProps {
-  hoge: any
-}
 
-const SectionLists: React.FC<SectionListsProps> = ({navigation}: any) => {
+const SectionLists: React.FC = () => {
+  const navigation = useNavigation();
+
   const datas = [
-    {title: 'D', data: ['Devian', 'Dan', 'Dominic']},
+    {
+      title: 'D',
+      data: [
+        {name: 'Devian', details: 'hogehoge'},
+        {name: 'Dan', details: 'fugafuga'},
+        {name: 'Dominic', details: 'pokepoke'},
+      ],
+    },
     {
       title: 'J',
       data: [
-        'Jackson',
-        'James',
-        'Jillian',
-        'James',
-        'Jillian',
-        'James',
-        'Jillian',
-        'James',
-        'Jillian',
-        'James',
-        'Jillian',
-        'James',
-        'Jillian',
-        'James',
-        'Jillian',
-        'James',
-        'Jillian',
-        'James',
-        'Jillian',
-        'James',
-        'Jillian',
-        'James',
-        'Jillian',
+        {name: 'Jackson'},
+        {name: 'James'},
+        {name: 'Jillian'},
+        {name: 'James'},
+        {name: 'Jillian'},
+        {name: 'James'},
+        {name: 'Jillian'},
+        {name: 'James'},
+        {name: 'Jillian'},
+        {name: 'James'},
+        {name: 'Jackson'},
+        {name: 'James'},
+        {name: 'Jillian'},
+        {name: 'James'},
+        {name: 'Jillian'},
+        {name: 'James'},
+        {name: 'Jillian'},
+        {name: 'James'},
+        {name: 'Jillian'},
+        {name: 'James'},
+        {name: 'Jackson'},
+        {name: 'James'},
+        {name: 'Jillian'},
+        {name: 'James'},
+        {name: 'Jillian'},
+        {name: 'James'},
+        {name: 'Jillian'},
+        {name: 'James'},
+        {name: 'Jillian'},
+        {name: 'James'},
       ],
     },
   ];
@@ -54,7 +68,19 @@ const SectionLists: React.FC<SectionListsProps> = ({navigation}: any) => {
     <View style={styles.container}>
       <SectionList
         sections={datas}
-        renderItem={({item, index}) => <Item title={item} key={index} />}
+        renderItem={({item, index}) => (
+          <View>
+            <Text
+              onPress={() =>
+                navigation.navigate('詳細', {
+                  item,
+                })
+              }
+              style={styles.item}>
+              {item.name}
+            </Text>
+          </View>
+        )}
         renderSectionHeader={({section: {title}}) => (
           <Text style={styles.header}>{title}</Text>
         )}
