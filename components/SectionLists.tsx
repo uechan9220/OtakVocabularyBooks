@@ -1,55 +1,10 @@
 import * as React from 'react';
 import {SectionList, StyleSheet, Text, View, Alert} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import datas from '../datas/datas';
 
 const SectionLists: React.FC = () => {
   const navigation = useNavigation();
-
-  const datas = [
-    {
-      title: 'D',
-      data: [
-        {name: 'Devian', details: 'hogehoge'},
-        {name: 'Dan', details: 'fugafuga'},
-        {name: 'Dominic', details: 'pokepoke'},
-      ],
-    },
-    {
-      title: 'J',
-      data: [
-        {name: 'Jackson'},
-        {name: 'James'},
-        {name: 'Jillian'},
-        {name: 'James'},
-        {name: 'Jillian'},
-        {name: 'James'},
-        {name: 'Jillian'},
-        {name: 'James'},
-        {name: 'Jillian'},
-        {name: 'James'},
-        {name: 'Jackson'},
-        {name: 'James'},
-        {name: 'Jillian'},
-        {name: 'James'},
-        {name: 'Jillian'},
-        {name: 'James'},
-        {name: 'Jillian'},
-        {name: 'James'},
-        {name: 'Jillian'},
-        {name: 'James'},
-        {name: 'Jackson'},
-        {name: 'James'},
-        {name: 'Jillian'},
-        {name: 'James'},
-        {name: 'Jillian'},
-        {name: 'James'},
-        {name: 'Jillian'},
-        {name: 'James'},
-        {name: 'Jillian'},
-        {name: 'James'},
-      ],
-    },
-  ];
 
   const navigateToDetails = (item: string) => {
     navigation.navigate('Details');
