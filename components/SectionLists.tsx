@@ -54,9 +54,11 @@ const SectionLists: React.FC = () => {
   );
   if (loading)
     return (
-      <View style={styles.container}>
-        <Text>'Loading...'</Text>
-      </View>
+      <ActivityIndicator
+        style={styles.loadingContainer}
+        size="large"
+        color="#0000ff"
+      />
     );
   if (error)
     return (
@@ -99,15 +101,23 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 18,
     height: 44,
+    color: '#5C5C5C',
   },
   header: {
-    paddingTop: 2,
-    paddingLeft: 10,
-    paddingRight: 10,
-    paddingBottom: 2,
-    fontSize: 14,
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    backgroundColor: '#9CEBBC',
+    color: 'white',
     fontWeight: 'bold',
-    backgroundColor: 'rgba(247, 247,247, 1.0)',
+    fontSize: 30,
+    padding: 7,
+  },
+  loadingContainer: {
+    position: 'absolute',
+    top: 0,
+    bottom: 1,
+    left: 0,
+    right: 0,
   },
 });
 
