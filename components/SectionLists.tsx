@@ -8,16 +8,15 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import datas from '../datas/datas';
-import {graphql} from 'react-apollo';
+import {useQuery} from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
-const GET_USER = gql`
+const GET_DATA = gql`
   query getUser {
-    allData{
-      title,
-      data {
-        name,
+    allData(order_by: {title: asc}) {
+      title
+      data(order_by: {name: asc}) {
+        name
         details
       }
     }
@@ -27,19 +26,19 @@ const GET_USER = gql`
 interface DataProps {
   data: {
     allData: {
-      title: string,
+      title: string;
       data: [
         {
-          name: string,
-          details: string
-        }
-      ]
-    }
-    loading: any;
+          name: string;
+          details: string;
+        },
+      ];
+    };
   };
 }
 
 const SectionLists: React.FC = () => {
+  const {loading, error, data} = useQuery(GET_DATA);
   const navigation = useNavigation();
 
   const navigateToDetails = (item: string) => {
@@ -56,26 +55,28 @@ const SectionLists: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <SectionList
-        sections={datas}
-        keyExtractor={(item, index) => `${item}+ ${index}`}
-        renderItem={({item}) => (
-          <View>
-            <Text
-              onPress={() =>
-                navigation.navigate('Detail', {
-                  item,
-                })
-              }
-              style={styles.item}>
-              {item.name}
-            </Text>
-          </View>
-        )}
-        renderSectionHeader={({section: {title}}) => (
-          <Text style={styles.header}>{title}</Text>
-        )}
-      />
+      {loading ? <Text>hoge</Text> : (
+        <SectionList
+          sections={data.allData}
+          keyExtractor={(item, index) => `${item}+ ${index}`}
+          renderItem={({item}) => (
+            <View>
+              <Text
+                onPress={() =>
+                  navigation.navigate('Detail', {
+                    item,
+                  })
+                }
+                style={styles.item}>
+                {item.name}
+              </Text>
+            </View>
+          )}
+          renderSectionHeader={({section: {title}}) => (
+            <Text style={styles.header}>{title}</Text>
+          )}
+        />
+      )}
     </View>
   );
 };

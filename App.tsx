@@ -45,7 +45,7 @@ const client = new ApolloClient({
       if (networkError) console.log(`[Network error]: ${networkError}`);
     }),
     new HttpLink({
-      uri: 'https://localhost:4000/',
+      uri: 'https://otak-server.herokuapp.com/v1/graphql',
     }),
   ]),
   cache: new InMemoryCache(),
