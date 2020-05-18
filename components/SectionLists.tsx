@@ -1,7 +1,43 @@
 import * as React from 'react';
-import {SectionList, StyleSheet, Text, View, Alert} from 'react-native';
+import {
+  SectionList,
+  StyleSheet,
+  Text,
+  View,
+  Alert,
+  ActivityIndicator,
+} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import datas from '../datas/datas';
+import {graphql} from 'react-apollo';
+import gql from 'graphql-tag';
+
+const GET_USER = gql`
+  query getUser {
+    allData{
+      title,
+      data {
+        name,
+        details
+      }
+    }
+  }
+`;
+
+interface DataProps {
+  data: {
+    allData: {
+      title: string,
+      data: [
+        {
+          name: string,
+          details: string
+        }
+      ]
+    }
+    loading: any;
+  };
+}
 
 const SectionLists: React.FC = () => {
   const navigation = useNavigation();
