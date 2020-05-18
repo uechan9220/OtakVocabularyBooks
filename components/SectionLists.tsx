@@ -52,31 +52,41 @@ const SectionLists: React.FC = () => {
       </Text>
     </View>
   );
+  if (loading)
+    return (
+      <View style={styles.container}>
+        <Text>'Loading...'</Text>
+      </View>
+    );
+  if (error)
+    return (
+      <View style={styles.container}>
+        <Text>Error! ${error.message}</Text>
+      </View>
+    );
 
   return (
     <View style={styles.container}>
-      {loading ? <Text>hoge</Text> : (
-        <SectionList
-          sections={data.allData}
-          keyExtractor={(item, index) => `${item}+ ${index}`}
-          renderItem={({item}) => (
-            <View>
-              <Text
-                onPress={() =>
-                  navigation.navigate('Detail', {
-                    item,
-                  })
-                }
-                style={styles.item}>
-                {item.name}
-              </Text>
-            </View>
-          )}
-          renderSectionHeader={({section: {title}}) => (
-            <Text style={styles.header}>{title}</Text>
-          )}
-        />
-      )}
+      <SectionList
+        sections={data.allData}
+        keyExtractor={(item, index) => `${item}+ ${index}`}
+        renderItem={({item}) => (
+          <View>
+            <Text
+              onPress={() =>
+                navigation.navigate('Detail', {
+                  item,
+                })
+              }
+              style={styles.item}>
+              {item.name}
+            </Text>
+          </View>
+        )}
+        renderSectionHeader={({section: {title}}) => (
+          <Text style={styles.header}>{title}</Text>
+        )}
+      />
     </View>
   );
 };
